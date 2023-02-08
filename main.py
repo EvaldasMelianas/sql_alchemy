@@ -8,8 +8,8 @@ crud.add_employee('Nic', 'Badman', '2000-05-10', 'Developer')
 crud.add_employee('Jone', 'Eisena', '1999-06-17', 'Developer')
 crud.add_employee('John', 'Walker', '1989-01-10', 'Product specialist', 2500)
 crud.add_employee('Elena', 'Sulcaite', '2001-01-11', 'Developer')
-crud.add_employee('Egle', 'Bartkeviciute', '2000-02-22', 'Developer')
+crud.add_employee('Egle', 'Bartkeviciute', '2000-02-22', 'Developer')"""
 
-crud.change_salary(1, 5000)
-crud.fire_employee(7)"""
-print(crud.find_active())
+crud.change_salary('Egle', 'Bartkeviciute', 3500)
+#crud.fire_employee(7)
+#print(crud.find_active())
