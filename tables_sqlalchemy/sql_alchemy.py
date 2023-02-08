@@ -16,18 +16,16 @@ class Project(Base):
     date_of_birth = Column("Date of birth", String)
     position = Column("Position", String)
     salary = Column("Salary", Float)
-    enrollment = Column("Enrollment date", Date, default=datetime.today())
+    enrollment = Column("Enrollment date", Date, default=datetime.today)
     end_date = Column("End Date", Date, default=None)
-    active = Column('Active', String)
 
-    def __init__(self, first_name, last_name, date_of_birth, position, salary, end_date=None, active='Yes'):
+    def __init__(self, first_name, last_name, date_of_birth, position, salary=1000, end_date=None):
         self.first_name = first_name
         self.last_name = last_name
         self.date_of_birth = date_of_birth
         self.position = position
         self.salary = salary
         self.end_date = end_date
-        self.active = active
 
     def __repr__(self):
         return f"{self.id} {self.first_name} {self.last_name} - {self.position}: {self.enrollment}"
