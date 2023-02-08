@@ -16,8 +16,9 @@ class ProjectCRUD:
         self.session.add(employee)
         self.session.commit()
 
-    def change_salary(self, employee_id, new_salary):
-        employee = self.session.query(Project).get(employee_id)
+    def change_salary(self, first_name, last_name, new_salary):
+        employee = self.session.query(Project).\
+            filter(Project.first_name == first_name, Project.last_name == last_name).first()
         employee.salary = new_salary
         self.session.commit()
 
