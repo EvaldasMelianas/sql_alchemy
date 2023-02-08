@@ -29,12 +29,13 @@ class ProjectCRUD:
     def fire_employee(self, employee_id):
         employee = self.session.query(Project).get(employee_id)
         employee.end_date = datetime.today()
-        employee.active = 'No'
         self.session.commit()
 
     def find_active(self, active=True):
         if active:
-            employee = self.session.query(Project.first_name, Project.last_name, Project.position).filter(Project.active == 'Yes').all()
+            employee = self.session.query(Project.first_name, Project.last_name, Project.position)\
+                .filter(Project.end_date != "").all()
         else:
-            employee = self.session.query(Project.first_name, Project.last_name, Project.position).filter(Project.active == 'No').all()
+            employee = self.session.query(Project.first_name, Project.last_name, Project.position)\
+                .filter(Project.active == "").all()
         return employee
