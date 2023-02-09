@@ -1,3 +1,4 @@
+from operator import or_
 from tables_sqlalchemy.sql_alchemy import Project, Base, engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
@@ -44,11 +45,11 @@ class ProjectCRUD:
         return employee
 
     def find_pay_above(self, value: int):
-        query = self.session.query(Project).filter(Project.salary > value).get(Project.position, Project.salary)
+        query = self.session.query(Project.position, Project.salary).filter(Project.salary > value).all()
         return query
 
-    def find_by_fragment(self, value):
-        frg_name = self.session.query(Project).filter(Project.first_name.contains(value)).all()
-        frg_surname = self.session.query(Project).filter(Project.last_name.contains(value)).all()
-        while True:
-            return frg_name or frg_surname
+    def find_by_fragment(self, value: str):
+        query = self.session.query(Project.first_name, Project.last_name).\
+            filter(or_(Project.first_name.like(f'%{value}%'), Project.last_name.like(f'%{value}%')))
+        result = self.session.execute(query).all()
+        return result
