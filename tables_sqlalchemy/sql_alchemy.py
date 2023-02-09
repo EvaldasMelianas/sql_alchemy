@@ -13,13 +13,13 @@ class Project(Base):
     id = Column(Integer, primary_key=True)
     first_name = Column("First_name", String)
     last_name = Column("Last Name", String)
-    date_of_birth = Column("Date of birth", String)
+    date_of_birth = Column("Date of birth", Date)
     position = Column("Position", String)
-    salary = Column("Salary", Float)
+    salary = Column("Salary", Float, default=1000)
     enrollment = Column("Enrollment date", Date, default=datetime.today)
     end_date = Column("End Date", Date, default=None)
 
-    def __init__(self, first_name, last_name, date_of_birth, position, salary=1000, end_date=None):
+    def __init__(self, first_name, last_name, date_of_birth, position, salary, end_date=None):
         self.first_name = first_name
         self.last_name = last_name
         self.date_of_birth = date_of_birth
@@ -28,7 +28,7 @@ class Project(Base):
         self.end_date = end_date
 
     def __repr__(self):
-        return f"{self.id} {self.first_name} {self.last_name} - {self.position}: {self.enrollment}"
+        return f"{self.id} {self.first_name} {self.last_name} - {self.position} {self.enrollment}"
 
 
 Base.metadata.create_all(engine)
